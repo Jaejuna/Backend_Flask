@@ -2,6 +2,10 @@ from flask import Flask, jsonify, request, render_template
 app = Flask(__name__)
 
 
+@app.route('/')
+def hello():
+    return "<h1>go to /login!</h1>"
+
 @app.route('/login')
 def login():
     username = request.args.get('user_name')
@@ -23,4 +27,4 @@ def hello_html():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="8080")
+    app.run(host="0.0.0.0", port="8081")
