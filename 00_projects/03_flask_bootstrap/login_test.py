@@ -17,7 +17,7 @@ def login():
     return jsonify(return_data)
 
 
-@app.route('/html_test')
+@app.route('/login_rawtest')
 def hello_html():
     # html file은 templates 폴더에 위치해야 함
     return render_template('login_rawtest.html')
@@ -39,4 +39,4 @@ def blog_html():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="8080")
+    app.run(host="0.0.0.0", port="8081")
