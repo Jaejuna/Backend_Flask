@@ -4,7 +4,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-
+#this data returns to console in dev mode
 @app.route("/test", methods=['GET'])
 def test():
     return make_response(jsonify(success=True), 200)
