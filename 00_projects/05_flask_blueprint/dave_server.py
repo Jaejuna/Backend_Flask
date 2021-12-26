@@ -2,6 +2,7 @@
 from flask import Flask
 from sub_blueprint import blog_test
 
+#the flask blueprint
 app = Flask(__name__)
 app.register_blueprint(blog_test.blog_ab, url_prefix='/blog')
 
