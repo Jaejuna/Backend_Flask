@@ -1,10 +1,9 @@
 import pymongo
 
 MONGO_HOST = 'localhost'
-MONGO_CONN = pymongo.MongoClient('mongodb://%s' % (MONGO_HOST))
-
 
 def conn_mongodb():
+MONGO_CONN = pymongo.MongoClient('mongodb://%s' % (MONGO_HOST))
     try:
         MONGO_CONN.admin.command('ismaster')
         blog_ab = MONGO_CONN.blog_session_db.blog_ab
