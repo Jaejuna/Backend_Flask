@@ -5,3 +5,4 @@ Learning Flask
 
 ### TIL
 22/05/05 : Learned about how important virtual env is and made ping test api and used httpie
+22/05/08 : Learned HTTP protocol especially RESTful API, started ch.05
