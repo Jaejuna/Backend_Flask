@@ -6,3 +6,4 @@ Learning Python backend structure, http protocol, Flask framework, etc...
 ### TIL
 22/05/05 : Learned about how important virtual env is and made ping test api and used httpie
 22/05/08 : Learned HTTP protocol especially RESTful API, started ch.05
+22/05/11 : Learned to make proper API, DB structure, wireframing and making DB and endpoint, and to connect DB to API
