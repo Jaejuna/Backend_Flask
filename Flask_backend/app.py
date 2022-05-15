@@ -120,6 +120,8 @@ def login_required(f):
 def create_app(test_config = None):
     app = Flask(__name__)
 
+    CORS(app)
+
     app.json_encoder = CustomJSONEncoder
 
     if test_config is None:
@@ -197,8 +199,11 @@ def create_app(test_config = None):
 
         return '', 200
 
-    @app.route('/timeline/<int:user_id>', methods=['GET'])
+    @app.route('/timeline', methods=['GET'])
+    @login_required(f)
     def timeline(user_id):
+        user_id = g.user_id
+
         return jsonify({
             'user_id'  : user_id,
             'timeline' : get_timeline(user_id)
