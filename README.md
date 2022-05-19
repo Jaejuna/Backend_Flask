@@ -9,4 +9,4 @@ Learning Python backend structure, http protocol, Flask framework, etc...
 22/05/11 : Learned to make proper API, DB structure, wireframing and making DB and endpoint, and to connect DB to API <br/>
 22/05/15 : Finisehed APIs and DBs and imported frontend model <br/>
 22/05/17 : Learned authentication especially about testing <br/>
-22/05/19 : Made it production server with flask-twisted <br/>
+22/05/19 : Made it production server with flask-twisted, layered structure done <br/>

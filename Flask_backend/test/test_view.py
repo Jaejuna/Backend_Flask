@@ -6,19 +6,17 @@ import config
 from app import create_app
 from sqlalchemy import create_engine, text
 
-database = create_engine(config.test_config['DB_URL'], encoding = 'utf-8', max_overflow = 0)
+database = create_engine(config.test_config['DB_URL'], encoding= 'utf-8', max_overflow = 0)
 
-## 테스트 세팅, test_client()로 http request, test_config로 db등 test로 세팅되게 하기, test 매개변수 생성 등
 @pytest.fixture
 def api():
     app = create_app(config.test_config)
-    app.config['TEST'] = True
+    app.config['TESTING'] = True
     api = app.test_client()
 
     return api
-
 def setup_function():
-    ## 테스트용 사용자 미리 생성
+    ## Create a test user
     hashed_password = bcrypt.hashpw(
         b"test password",
         bcrypt.gensalt()
@@ -54,7 +52,7 @@ def setup_function():
         )
     """), new_users)
     
-    ## id 2 의 트윗 미리 생성
+    ## User 2 의 트윗 미리 생성해 놓기
     database.execute(text("""
         INSERT INTO tweets (
             user_id,
@@ -65,7 +63,7 @@ def setup_function():
         )
     """))
  
-## 테스트 데이터 삭제
+
 def teardown_function():
     database.execute(text("SET FOREIGN_KEY_CHECKS=0"))
     database.execute(text("TRUNCATE users"))
@@ -73,7 +71,6 @@ def teardown_function():
     database.execute(text("TRUNCATE users_follow_list"))
     database.execute(text("SET FOREIGN_KEY_CHECKS=1"))
 
-## unit test 시작
 def test_ping(api):
     resp = api.get('/ping')
     assert b'pong' in resp.data
@@ -166,7 +163,7 @@ def test_follow(api):
     # follow 유저 아이디 = 2
     resp  = api.post(
         '/follow',
-        data         = json.dumps({'id': 1,'follow' : 2}),
+        data         = json.dumps({'follow' : 2}),
         content_type = 'application/json',
         headers      = {'Authorization' : access_token}
     )
@@ -200,7 +197,7 @@ def test_unfollow(api):
     # follow 유저 아이디 = 2
     resp  = api.post(
         '/follow',
-        data         = json.dumps({'id: 1,'follow' : 2}),
+        data         = json.dumps({'follow' : 2}),
         content_type = 'application/json',
         headers      = {'Authorization' : access_token}
     )
@@ -224,7 +221,7 @@ def test_unfollow(api):
     # unfollow 유저 아이디 = 2
     resp  = api.post(
         '/unfollow',
-        data         = json.dumps({'id': 1,'unfollow' : 2}),
+        data         = json.dumps({'unfollow' : 2}),
         content_type = 'application/json',
         headers      = {'Authorization' : access_token}
     )
